@@ -5,17 +5,19 @@ import axios from "axios";
 import AuthProvider from "./components/contexts/AuthContext.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
-      <App />
-      <ToastContainer />
+      <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+        <App />
+        <ToastContainer />
+      </GoogleOAuthProvider>
     </AuthProvider>
     <ReactQueryDevtools initialIsOpen={false} />
   </QueryClientProvider>

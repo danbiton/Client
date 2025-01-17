@@ -3,7 +3,9 @@ import { useContext } from "react";
 import { ErrorMessage, Formik } from "formik";
 import { LoginSchema } from "../../../schema/Index";
 import { AuthContext } from "../../contexts/AuthContext";
-
+import { FcGoogle } from "react-icons/fc";
+import { useGoogleLogin } from "@react-oauth/google";
+import axios from "axios";
 const initialValues = {
   employeeEmail: "",
   employeePassword: "",
@@ -13,6 +15,17 @@ console.log("123");
 function LoginForm() {
   const { handleLogin } = useContext(AuthContext);
   console.log(initialValues);
+
+  const login = useGoogleLogin({
+    onSuccess: async ({ code }) => {
+      const tokens = await axios.post("/auth/google", {
+        code,
+      });
+
+      console.log(tokens);
+    },
+    flow: "auth-code",
+  });
 
   return (
     <Formik
@@ -92,6 +105,14 @@ function LoginForm() {
             className="w-full bg-gradient-to-r from-amber-500  via-amber-600 to-amber-300 text-white rounded-xl py-3 px-4 font-semibold hover:from-amber-700 hover:to-amber-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg"
           >
             {isSubmitting ? "inProcces..." : "Sign In"}
+          </button>
+          <button
+            onClick={() => login()}
+            type="button"
+            className="w-full py-2 px-4 border border-gray-600 rounded-lg text-gray-400 hover:bg-gray-700 transition flex items-center justify-center gap-2"
+          >
+            <FcGoogle className="w-5 h-5" />
+            Sign in with Google
           </button>
         </form>
       )}

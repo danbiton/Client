@@ -137,7 +137,7 @@ function CardIssues() {
       <div className="flex flex-wrap gap-4 justify-evenly">
         {/* Issue Card */}
         {data?.map((element) => (
-          <div key={element._id}
+          <div key={element?._id}
           className="bg-gradient-to-br from-amber-50 to-orange-50 p-4 rounded-3xl shadow-xl w-80">
             {/* Location Pills */}
             <div className="flex space-x-2 mb-3">

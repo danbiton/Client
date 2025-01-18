@@ -17,6 +17,7 @@ function AuthProvider({ children }) {
         showSuccessToast("Signed-in user:", data?.data?.employeeName); //TODO not working
         setIsAuth(true);
         setUser(data.data);
+        console.log(user)
         return true;
       }
     } catch (error) {
@@ -56,8 +57,10 @@ function AuthProvider({ children }) {
 
   const value = {
     handleLogin,
+    setUser,
     user,
     isAuth,
+    setIsAuth,
     signOut,
   };
 

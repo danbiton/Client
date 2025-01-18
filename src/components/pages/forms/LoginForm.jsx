@@ -6,14 +6,15 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { FcGoogle } from "react-icons/fc";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
+
 const initialValues = {
   employeeEmail: "",
   employeePassword: "",
 };
-console.log("123");
 
 function LoginForm() {
-  const { handleLogin } = useContext(AuthContext);
+  
+  const { handleLogin, setIsAuth, setUser, user } = useContext(AuthContext);
   console.log(initialValues);
 
   const login = useGoogleLogin({
@@ -21,8 +22,10 @@ function LoginForm() {
       const tokens = await axios.post("/auth/google", {
         code,
       });
-
-      console.log(tokens);
+      if (tokens.data.success) {
+        setIsAuth(true);
+        setUser(tokens.data.data);
+      }
     },
     flow: "auth-code",
   });

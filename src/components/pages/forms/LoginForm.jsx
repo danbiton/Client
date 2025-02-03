@@ -15,7 +15,7 @@ const initialValues = {
 function LoginForm() {
   
   const { handleLogin, setIsAuth, setUser } = useContext(AuthContext);
-  console.log(initialValues);
+ 
 
   const login = useGoogleLogin({
     onSuccess: async ({ code }) => {

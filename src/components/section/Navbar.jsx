@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Menu, X, User, LogOut, Link } from "lucide-react";
+import { Menu, X, User, LogOut } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import { useContext } from "react";
@@ -9,7 +9,7 @@ const Navbar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { user, signOut } = useContext(AuthContext);
-  const {  handleEditEmployee } = useContext(ActionContext);
+  const { handleEditEmployee } = useContext(ActionContext);
 
   return (
     <>
@@ -25,9 +25,8 @@ const Navbar = () => {
                 className="w-44 rounded"
               />
             </a>
-            
+
             <div className="hidden md:flex space-x-8">
-             
               <NavLink
                 to="/allissues"
                 className="text-white hover:bg-white/20 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
@@ -67,7 +66,10 @@ const Navbar = () => {
                 {isDropdownOpen && (
                   <div className="absolute right-4 mt-2 w-48 bg-amber-100 rounded-xl shadow-lg py-1 z-50">
                     <button
-                      onClick={() => handleEditEmployee(user)}
+                      onClick={() => {
+                         handleEditEmployee(user)
+                         setIsDropdownOpen(false)}
+                        }
                       className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     >
                       <User className="h-4 w-4 mr-2" />
@@ -134,10 +136,6 @@ const Navbar = () => {
                   All Issues
                 </NavLink>
                 <NavLink
-                  onClick={() => {
-                    mutateMyIssue({ id: user._id });
-                    setIsSidebarOpen(false);
-                  }}
                   to="/myissue"
                   className="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-lg"
                 >

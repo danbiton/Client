@@ -7,8 +7,6 @@ import { exportToXL } from "../../lib/index.jsx";
 import { AuthContext } from "../contexts/AuthContext.jsx";
 import SearchInput from "../pages/publicPages/SearchInput.jsx";
 import UseSuggestions from "../hooks/UseSuggestions.jsx";
-import { ChevronDown, Filter } from "lucide-react";
-import Button from "../ui/ButtonAddIssue.jsx";
 import SelectBox from "../pages/forms/SelectBox.jsx";
 import { ImUserPlus } from "react-icons/im";
 import WaveLoader from "../ui/WaveLoader.jsx";

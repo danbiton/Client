@@ -17,7 +17,7 @@ function AuthProvider({ children }) {
         showSuccessToast("Signed-in user:", data?.data?.employeeName); //TODO not working
         setIsAuth(true);
         setUser(data.data);
-        console.log(user)
+        console.log(user);
         return true;
       }
     } catch (error) {
@@ -26,6 +26,7 @@ function AuthProvider({ children }) {
       return false;
     }
   }
+  console.log(user);
 
   async function authUser() {
     try {

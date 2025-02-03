@@ -20,15 +20,16 @@ function EditEmployeeForm() {
   // setState Values when onChange Event triggered => rerender body of Component
   const { setUser, user, setIsAuth } = useContext(AuthContext);
   const queryClient = useQueryClient();
-  const navigate = useNavigate();
+ 
 
   const { mutate } = useMutation({
+
     mutationKey: ["edit employee"],
     mutationFn: async ({ values, id }) =>
       await axios.put(`users/employee/update/${id}`, values),
     onSuccess: (data) => {
-      document.getElementById("employee_modal").close();
 
+      document.getElementById("employee_modal").close();
       queryClient.invalidateQueries({ queryKey: ["my_issues"] });
       setUser(data.data.employeeUpdated);
       setIsAuth(true);
@@ -62,7 +63,7 @@ function EditEmployeeForm() {
   }
 
   useEffect(() => {
-    // if (!emp) return setValues(initialValues);
+   
     setValues({ ...emp });
   }, [emp]);
 
@@ -72,7 +73,7 @@ function EditEmployeeForm() {
     }
     document.getElementById("employee_modal").close();
   }
-  const [showPassword, setShowPassword] = useState(false);
+ 
   return (
     <div
       className="bg-orange-50 p-6 rounded-2xl 

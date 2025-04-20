@@ -25,11 +25,12 @@ function SelectBox({ handleChange, id, value }) {
       >
         <option value={"all"}>Choose Permission</option>
 
-        {data?.map((profession) => (
-          <option key={profession._id} value={profession._id}>
-            {profession.profession_name}
-          </option>
-        ))}
+
+  {Array.isArray(data) && data.map((profession) => (
+    <option key={profession._id} value={profession._id}>
+      {profession.profession_name}
+    </option>
+  ))}
       </select>
     </div>
   );

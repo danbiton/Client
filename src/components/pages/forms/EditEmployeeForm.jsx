@@ -6,19 +6,19 @@ import SelectBox from "./SelectBox";
 import { showErrorToast, showSuccessToast } from "../../../lib/Toast";
 import { data, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
-// const initialValues = {
-//   employeeName: "",
-//   employeeEmail: "",
-//   employeePassword: "",
-//   employeeId: "",
-// };u
+const initialValues = {
+  employeeName: "",
+  employeeEmail: "",
+  employeePassword: "",
+  employeeId: "",
+};
 
 function EditEmployeeForm() {
   // Body OF Component run => useState implemented =>
   // useEffect for Side Effect when component Mounting =>
   // setState Values => rerender body of Component =>
   // setState Values when onChange Event triggered => rerender body of Component
-  const { setUser, user, setIsAuth } = useContext(AuthContext);
+  const { setUser, setIsAuth } = useContext(AuthContext);
   const queryClient = useQueryClient();
  
 
@@ -42,7 +42,7 @@ function EditEmployeeForm() {
     },
   });
 
-  console.log(user);
+  
 
   const { emp } = useContext(ActionContext);
   const [values, setValues] = useState(null);
@@ -104,7 +104,7 @@ function EditEmployeeForm() {
                 type="text"
                 className="w-full rounded-xl border-2 border-amber-200 bg-amber-50 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
                 placeholder="Enter first name"
-                value={values?.employeeName}
+                value={values?.employeeName || ""}
                 onChange={handleChange}
               />
             </div>
@@ -121,7 +121,7 @@ function EditEmployeeForm() {
                 type="email"
                 className="w-full rounded-xl border-2 border-amber-200 bg-amber-50 py-2 px-3 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
                 placeholder="Enter email address"
-                value={values?.employeeEmail}
+                value={values?.employeeEmail || ""}
                 onChange={handleChange}
               />
             </div>
@@ -150,7 +150,7 @@ function EditEmployeeForm() {
                 Profession
               </label>
               <SelectBox
-                value={values?.employeeId?._id || values?.employeeId}
+                value={values?.employeeId?._id || values?.employeeId || ""}
                 handleChange={handleChange}
                 placeholder="Select Profession"
                 id={"employeeId"}

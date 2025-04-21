@@ -18,7 +18,7 @@ const initialValues = {
 
 function IssueForm() {
   const { iss, setIss } = useContext(ActionContext);
-  const [values, setValues] = useState(null);
+  const [values, setValues] = useState(initialValues);
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ function IssueForm() {
     mutationFn: async ({ values, id }) =>
       await axios.put(`issues/update/${id}`, values),
     onSuccess: (data) => {
-      console.log(data);
+    
       document.getElementById("issue_modal").close();
       queryClient.invalidateQueries({
         queryKey: ["get_issues"],
@@ -144,7 +144,7 @@ function IssueForm() {
                   className="w-full rounded-lg border-2 border-amber-200 bg-amber-50 py-1.5 px-3 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
                   id="building"
                   name="issue_building"
-                  value={values?.issue_building}
+                  value={values?.issue_building || ""}
                   onChange={handleChange}
                   required
                   // disabled={!!iss}
@@ -167,7 +167,7 @@ function IssueForm() {
                   className="w-full rounded-lg border-2 border-amber-200 bg-amber-50 py-1.5 px-3 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
                   id="floor"
                   name="issue_floor"
-                  value={values?.issue_floor}
+                  value={values?.issue_floor || ""}
                   onChange={handleChange}
                   required
                   // disabled={!!iss}
@@ -192,7 +192,7 @@ function IssueForm() {
                   type="text"
                   id="apartment"
                   name="issue_apartment"
-                  value={values?.issue_apartment}
+                  value={values?.issue_apartment || ""}
                   onChange={handleChange}
                   required
                   // disabled={!!iss}
@@ -210,7 +210,7 @@ function IssueForm() {
                 </label>
                 <SelectBox
                   value={
-                    values?.issue_profession._id || values?.issue_profession
+                    values?.issue_profession._id || values?.issue_profession || ""
                   }
                   handleChange={handleChange}
                   id={"issue_profession"}
@@ -228,7 +228,7 @@ function IssueForm() {
                   className="w-full rounded-lg border-2 border-amber-200 bg-amber-50 py-1.5 px-3 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
                   id="urgency"
                   name="issue_urgency"
-                  value={values?.issue_urgency}
+                  value={values?.issue_urgency || ""}
                   onChange={handleChange}
                   required
                 >
@@ -250,7 +250,7 @@ function IssueForm() {
                     className="w-full rounded-lg border-2 border-amber-200 bg-amber-50 py-1.5 px-3 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
                     id="status"
                     name="issue_status"
-                    value={values?.issue_status}
+                    value={values?.issue_status || ""}
                     onChange={handleChange}
                     required
                   >
@@ -273,7 +273,7 @@ function IssueForm() {
               <textarea
                 id="description"
                 name="issue_description"
-                value={values?.issue_description}
+                value={values?.issue_description || ""}
                 onChange={handleChange}
                 required
                 className="w-full rounded-lg border-2 border-amber-200 bg-amber-50 py-1.5 px-3 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"

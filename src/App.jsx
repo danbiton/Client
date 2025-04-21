@@ -20,7 +20,7 @@ function ProtectedRoute({ isAuth }) {
 }
 
 function Root({ isAuth }) {
-  console.log(isAuth);
+  
   return (
     <>
       <BackgroundLayout>
@@ -145,7 +145,7 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router} />
+      <RouterProvider router={router} fallbackElement={<div>Loading...</div>} />
     </>
   );
 }

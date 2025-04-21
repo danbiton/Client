@@ -17,7 +17,7 @@ function AuthProvider({ children }) {
         showSuccessToast("Signed-in user:", data?.data?.employeeName); //TODO not working
         setIsAuth(true);
         setUser(data.data);
-        console.log(user);
+      
         return true;
       }
     } catch (error) {
@@ -26,7 +26,7 @@ function AuthProvider({ children }) {
       return false;
     }
   }
-  console.log(user);
+
 
   async function authUser() {
     try {
@@ -36,7 +36,9 @@ function AuthProvider({ children }) {
         setUser(data.user);
       }
     } catch (error) {
-      console.log(error);
+      if (error.response?.status !== 401) {
+        console.error("Auth error:", error);
+      }
     }
   }
 
@@ -48,7 +50,7 @@ function AuthProvider({ children }) {
     try {
       const { data } = await axios.get("/users/manager/logout");
       setIsAuth(false);
-      console.log(data);
+    
       showSuccessToast(data.message);
     } catch (error) {
       console.log(error);

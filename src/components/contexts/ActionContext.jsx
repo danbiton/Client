@@ -28,7 +28,7 @@ function ActionProvider({ children }) {
   
 
   function handleEditIssue(issue) {
-    console.log(issue);
+  
     document.getElementById("issue_modal").showModal();
     setIss(issue);
   }

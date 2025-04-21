@@ -10,7 +10,7 @@ import { ActionContext } from "../contexts/ActionContext.jsx";
 function MyIssuesHistory() {
   const { user } = useContext(AuthContext);
   const { getAllDetails } = useContext(ActionContext);
-  console.log(user);
+
 
   const idEmployee = user._id;
   const { data, isLoading, isError, error } = useQuery({

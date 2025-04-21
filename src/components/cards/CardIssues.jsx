@@ -41,6 +41,8 @@ function CardIssues() {
   // search input issues
   const [suggestions, setSearchInput] = UseSuggestions("issues");
   const [selected, setSelected] = useState(null);
+  const [professionFilter, setProfessionFilter] = useState("");
+
 
   async function downloadXl() {
     const result = await getAllDetails("/issues/getAllIssues");
@@ -115,9 +117,9 @@ function CardIssues() {
 
         <div>
           <SelectBox
-            // value={professionFilter || "all"}
-            // handleChange={(e) => setProfessionFilter(e.target.value)}
-            // onChange={(value) => setProfessionFilter(value.profession_name)}
+            value={professionFilter || "all"}
+            handleChange={(e) => setProfessionFilter(e.target.value)}
+            onChange={(value) => setProfessionFilter(value.profession_name)}
             placeholder="Select Profession"
             id={"profession_name"}
           />

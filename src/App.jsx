@@ -14,7 +14,7 @@ import IssueModal from "./components/modal/IssueModal";
 import EmployeeModal from "./components/modal/employeeModal";
 import BackgroundLayout from "./components/ui/BackgroundLayout";
 import NavPublic from "./components/section/NavPublic";
-
+import ErrorPage from "./components/ErrorPage";
 function ProtectedRoute({ isAuth }) {
   return isAuth ? <Outlet /> : <Navigate to="/" replace />;
 }
@@ -45,7 +45,11 @@ function App() {
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<Root isAuth={isAuth} />}>
+       <Route
+              path="/"
+              element={<Root isAuth={isAuth} />}
+              errorElement={<ErrorPage />} 
+            >
         {/* Public Routes */}
         <Route element={isAuth ? <Navigate to={"/welcomepage"} /> : <Outlet />}>
           <Route

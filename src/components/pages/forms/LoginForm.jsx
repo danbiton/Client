@@ -115,18 +115,6 @@ function LoginForm() {
             <FcGoogle className="w-5 h-5" />
             Sign in with Google
           </button>
-          <button
-            type="button"
-            onClick={async () => {
-              await handleLogin({
-                employeeEmail: "interviewer@demo.com",
-                employeePassword: "demo1234",
-              });
-            }}
-            className="w-full py-2 px-4 border border-blue-500 text-blue-500 rounded-lg hover:bg-blue-500 hover:text-white transition mt-2"
-          >
-            התחברות כמראיין
-          </button>
         </form>
       )}
     </Formik>

@@ -26,6 +26,23 @@ function AuthProvider({ children }) {
       return false;
     }
   }
+  async function guestLogin() {
+    try {
+      const values = {employeeEmail: "bineomi@gmail.com", employeePassword: "g1234"}
+      const { data } = await axios.post("/users/employee/signin", values);
+      if (data.success) {
+        showSuccessToast("Signed-in guest user:", data?.data?.employeeName); //TODO not working
+        setIsAuth(true);
+        setUser(data.data);
+      
+        return true;
+      }
+    } catch (error) {
+      const msg = error.response.data.error;
+      showErrorToast(msg);
+      return false;
+    }
+  }
 
 
   async function authUser() {
@@ -65,6 +82,7 @@ function AuthProvider({ children }) {
     isAuth,
     setIsAuth,
     signOut,
+    guestLogin
   };
 
   return (

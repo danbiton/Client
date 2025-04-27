@@ -13,7 +13,7 @@ const initialValues = {
 };
 
 function LoginForm() {
-  const { handleLogin, setIsAuth, setUser } = useContext(AuthContext);
+  const { handleLogin, setIsAuth, setUser, guestLogin } = useContext(AuthContext);
 
   const login = useGoogleLogin({
     onSuccess: async ({ code }) => {
@@ -106,6 +106,13 @@ function LoginForm() {
             className="w-full bg-gradient-to-r from-amber-500  via-amber-600 to-amber-300 text-white rounded-xl py-3 px-4 font-semibold hover:from-amber-700 hover:to-amber-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg"
           >
             {isSubmitting ? "inProcces..." : "Sign In"}
+          </button>
+          <button
+            onClick={guestLogin}
+            type="button"
+            className="w-full bg-gradient-to-r from-amber-500  via-amber-600 to-amber-300 text-white rounded-xl py-2 px-4 font-semibold hover:from-amber-700 hover:to-amber-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg"
+          >
+           guest
           </button>
           <button
             onClick={() => login()}
